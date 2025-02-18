@@ -1,7 +1,7 @@
 .PHONY: install collectstatic migrate build render-start
 
 install:
-	uv pip install . --python=/opt/render/project/src/.render/bin/python3
+	uv pip install --python=$(which python3) .
 
 collectstatic:
 	python manage.py collectstatic --noinput
@@ -14,3 +14,4 @@ build:
 
 render-start:
 	gunicorn task_manager.wsgi
+	
